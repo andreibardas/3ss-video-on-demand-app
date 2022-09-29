@@ -1,6 +1,43 @@
-# Getting Started with Create React App
+# 3SS Video On Demand App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+**RUN APP LOCALLY:**
+
+Due to the fact that the issuer ".3rdy.tv" does not have an SSL certificate, please disable verification from your browser for this address.
+
+Easiest way to do that (Google Chrome example):
+
+1. Access **video-proxy.3rdy.tv**
+2. Go to "**Advanced**"
+3. Click on "**Proceed to video-proxy.3rdy.tv (unsafe)**"
+4. **Refresh.** You should now get data from the server
+
+
+
+Open the project in a new terminal and run:
+
+**npm i**
+
+**npm start**
+
+The app is now live on "http://localhost:3000/" 🎉🎉🎉
+
+
+
+
+
+NPM version: **6.14.15**
+
+Node.js version: **14.18.0**
+
+
+
+
+
+
+
+
 
 ## Available Scripts
 
@@ -39,8 +76,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
