@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
+import AssetDetailsContext from "../contexts/AssetContext/AssetDetailsContext";
 
 type AssetDetailsProps = {
   title?: string;
@@ -14,6 +15,8 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}`
   );
 
+  const { addToWatchlist } = useContext(AssetDetailsContext);
+
   return (
     <div>
       <h1>Asset Details Page</h1>
@@ -22,6 +25,13 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
         src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${assetDetails.data?.data.poster_path}`}
       />
       <p>Asset Title: {assetDetails.data?.data.original_title}</p>
+      <button
+        onClick={() =>
+          addToWatchlist(assetDetails.data?.data.original_title, 32)
+        }
+      >
+        add to watchlist
+      </button>
       <p>Asset Overview: {assetDetails.data?.data.overview}</p>
       <p>Asset Release Date: {assetDetails.data?.data.release_date}</p>
 

@@ -25,10 +25,11 @@ The app is now live on "http://localhost:3000/" 🎉🎉🎉
 
 
 
-
-
 NPM version: **6.14.15**
 
 Node.js version: **14.18.0**
 
+
+
+**NOTE:** I have also created a Watchlist component in order to make the use of Context more relevant.
 
