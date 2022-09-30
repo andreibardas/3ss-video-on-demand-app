@@ -16,6 +16,10 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}`
   );
 
+  const assetVideos: ApiResponse = useGetApi(
+    `https://video-proxy.3rdy.tv/api/vod/asset/${id}/videos`
+  );
+
   const [notFound, setNotFound] = useState(false);
 
   const { addToWatchlist } = useContext(WatchlistContext);
@@ -30,6 +34,9 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
     <div>
       <h1>Asset Details Page</h1>
       <p>Asset ID: {id}</p>
+      <button onClick={() => console.log(assetVideos.data?.data.results)}>
+        log videos
+      </button>
       <img
         src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${assetDetails.data?.data.poster_path}`}
       />
@@ -46,7 +53,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
 
       <button>Watch Trailers</button>
 
-      {assetDetails.data?.data.videos.results.map((result: any) => {
+      {assetVideos.data?.data.results.map((result: any) => {
         return (
           <div key={result.key}>
             <iframe
