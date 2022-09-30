@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 export type ApiResponse = {
-  status: Number;
+  success: Boolean;
   statusText: String;
   data: any;
   error: any;
@@ -9,7 +10,9 @@ export type ApiResponse = {
 };
 
 export const useGetApi = (url: string): ApiResponse => {
-  const [status, setStatus] = useState<Number>(0);
+  const navigate = useNavigate();
+
+  const [success, setSuccess] = useState<Boolean>(false);
   const [statusText, setStatusText] = useState<String>("");
   const [data, setData] = useState<any>();
   const [error, setError] = useState<any>();
@@ -20,7 +23,11 @@ export const useGetApi = (url: string): ApiResponse => {
     try {
       const apiResponse = await fetch(url);
       const json = await apiResponse.json();
-      setStatus(apiResponse.status);
+      console.log(json.success);
+      if (json.success === false) {
+        navigate("/not-found", { replace: true });
+      }
+      setSuccess(json.success);
       setStatusText(apiResponse.statusText);
       setData(json);
     } catch (error) {
@@ -33,5 +40,5 @@ export const useGetApi = (url: string): ApiResponse => {
     getAPIData();
   }, []);
 
-  return { status, statusText, data, error, loading };
+  return { success, statusText, data, error, loading };
 };

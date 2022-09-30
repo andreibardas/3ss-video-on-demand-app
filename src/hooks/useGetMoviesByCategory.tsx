@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type CategoriesApiResponse = {
-  status: Number;
+  success: Boolean;
   statusText: String;
   data: any;
   error: any;
@@ -13,12 +14,14 @@ export const useGetMoviesByCategory = (
   categoryId: any,
   pageNumber: any
 ): CategoriesApiResponse => {
-  const [status, setStatus] = useState<Number>(0);
+  const [success, setSuccess] = useState<Boolean>(false);
   const [statusText, setStatusText] = useState<String>("");
   const [data, setData] = useState<any>([]);
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState(false);
+
+  const navigate = useNavigate();
 
   const getAPIData = async () => {
     setLoading(true);
@@ -27,7 +30,10 @@ export const useGetMoviesByCategory = (
         `https://video-proxy.3rdy.tv/api/vod/category/${categoryId}/assets/?page=${pageNumber}&size=20`
       );
       const json = await apiResponse.json();
-      setStatus(apiResponse.status);
+      setSuccess(json.success);
+      if (json.success === false) {
+        navigate("/not-found", { replace: true });
+      }
       setStatusText(apiResponse.statusText);
       setData((prevData: any) => {
         if (pageNumber === 1) {
@@ -47,5 +53,5 @@ export const useGetMoviesByCategory = (
     getAPIData();
   }, [categoryId, pageNumber]);
 
-  return { status, statusText, data, error, loading, hasMore };
+  return { success, statusText, data, error, loading, hasMore };
 };

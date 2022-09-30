@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import AssetDetailsContext from "../contexts/AssetContext/AssetDetailsContext";
 
@@ -10,12 +10,21 @@ type AssetDetailsProps = {
 
 const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
   let { id } = useParams();
+  const navigate = useNavigate();
 
   const assetDetails: ApiResponse = useGetApi(
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}`
   );
 
+  const [notFound, setNotFound] = useState(false);
+
   const { addToWatchlist } = useContext(AssetDetailsContext);
+
+  // useEffect(() => {
+  //   if (notFound) {
+  //     navigate("/404", { replace: true });
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -39,7 +48,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
 
       {assetDetails.data?.data.videos.results.map((result: any) => {
         return (
-          <div>
+          <div key={result.key}>
             <iframe
               width="853"
               height="480"

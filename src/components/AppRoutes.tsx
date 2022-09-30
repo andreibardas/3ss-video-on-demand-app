@@ -46,7 +46,6 @@ function AppRoutes() {
           <Route path="/movies/:category_id" element={<MoviesByCategory />} />
           <Route path="/asset/:id" element={<AssetDetails />} />
           <Route path="/watchlist" element={<Watchlist />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : null}
