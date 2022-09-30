@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
-import AssetDetailsContext from "../contexts/AssetContext/AssetDetailsContext";
+import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
 
 type AssetDetailsProps = {
   title?: string;
@@ -18,7 +18,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
 
   const [notFound, setNotFound] = useState(false);
 
-  const { addToWatchlist } = useContext(AssetDetailsContext);
+  const { addToWatchlist } = useContext(WatchlistContext);
 
   // useEffect(() => {
   //   if (notFound) {

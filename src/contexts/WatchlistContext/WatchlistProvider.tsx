@@ -1,15 +1,5 @@
-import React, { createContext, useState } from "react";
-
-type AssetDetailsContextInterface = {
-  id: number;
-  name: string;
-};
-
-const AssetDetailsContext = createContext<any | null>([]);
-
-export default AssetDetailsContext;
-
-//
+import React, { useState } from "react";
+import WatchlistContext from "./WatchlistContext";
 
 type WatchlistProviderProps = {
   children: React.ReactNode;
@@ -23,10 +13,8 @@ export const WatchlistProvider = ({ children }: WatchlistProviderProps) => {
   };
 
   return (
-    <AssetDetailsContext.Provider value={{ items, addToWatchlist }}>
+    <WatchlistContext.Provider value={{ items, addToWatchlist }}>
       {children}
-    </AssetDetailsContext.Provider>
+    </WatchlistContext.Provider>
   );
 };
-
-//

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import AssetDetailsContext from "../contexts/AssetContext/AssetDetailsContext";
+import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
 
 type HeaderProps = {};
 
 const Header = ({}: HeaderProps) => {
-  const items = useContext(AssetDetailsContext);
+  const items = useContext(WatchlistContext);
 
   console.log(items);
 
