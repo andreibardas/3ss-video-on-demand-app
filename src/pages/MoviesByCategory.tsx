@@ -5,6 +5,7 @@ import {
   CategoriesApiResponse,
   useGetMoviesByCategory,
 } from "../hooks/useGetMoviesByCategory";
+import { Link } from "react-router-dom";
 
 type Category = {
   id: number;
@@ -79,7 +80,7 @@ const MoviesByCategory = () => {
   return (
     <div>
       <h1>Movies By Category Page</h1>
-      {/*<p>{currentCategory?.name} Movies</p>*/}
+      <p>{currentCategory?.name} Movies</p>
 
       <button onClick={() => console.log(data)}>
         console log movies by category
@@ -94,26 +95,30 @@ const MoviesByCategory = () => {
           flexWrap: "wrap",
         }}
       >
-        {data.map((popularAsset: any, index: any) => {
+        {data.map((asset: any, index: any) => {
           if (data.length === index + 1) {
             return (
-              <div ref={lastMovieElementRef} key={popularAsset.id}>
-                <img
-                  style={{ width: "200px" }}
-                  src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}
-                />
-                <p>{popularAsset.original_title}</p>
-              </div>
+              <Link to={`/asset/${asset.id}`}>
+                <div ref={lastMovieElementRef} key={asset.id}>
+                  <img
+                    style={{ width: "200px" }}
+                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
+                  />
+                  <p>{asset.original_title}</p>
+                </div>
+              </Link>
             );
           } else {
             return (
-              <div key={popularAsset.id}>
-                <img
-                  style={{ width: "200px" }}
-                  src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}
-                />
-                <p>{popularAsset.original_title}</p>
-              </div>
+              <Link to={`/asset/${asset.id}`}>
+                <div key={asset.id}>
+                  <img
+                    style={{ width: "200px" }}
+                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
+                  />
+                  <p>{asset.original_title}</p>
+                </div>
+              </Link>
             );
           }
         })}

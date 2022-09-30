@@ -1,5 +1,6 @@
 import React from "react";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
+import { Link } from "react-router-dom";
 
 type HomeProps = {
   title?: string;
@@ -7,7 +8,7 @@ type HomeProps = {
 };
 
 const Home = ({ title, paragraph }: HomeProps) => {
-  const popular: ApiResponse = useGetApi(
+  const popularAssets: ApiResponse = useGetApi(
     "https://video-proxy.3rdy.tv/api/vod/popular"
   );
 
@@ -24,14 +25,16 @@ const Home = ({ title, paragraph }: HomeProps) => {
           flexWrap: "wrap",
         }}
       >
-        {popular.data?.data.map((popularAsset: any) => (
-          <div key={popularAsset.id}>
-            <img
-              style={{ width: "200px" }}
-              src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}
-            />
-            <p>{popularAsset.original_title}</p>
-          </div>
+        {popularAssets.data?.data.map((popularAsset: any) => (
+          <Link to={`/asset/${popularAsset.id}`}>
+            <div key={popularAsset.id}>
+              <img
+                style={{ width: "200px" }}
+                src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}
+              />
+              <p>{popularAsset.original_title}</p>
+            </div>
+          </Link>
         ))}
       </div>
 
