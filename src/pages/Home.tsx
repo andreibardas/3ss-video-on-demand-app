@@ -26,8 +26,8 @@ const Home = ({ title, paragraph }: HomeProps) => {
         }}
       >
         {popularAssets.data?.data.map((popularAsset: any) => (
-          <Link to={`/asset/${popularAsset.id}`}>
-            <div key={popularAsset.id}>
+          <Link key={popularAsset.id} to={`/asset/${popularAsset.id}`}>
+            <div>
               <img
                 style={{ width: "200px" }}
                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}

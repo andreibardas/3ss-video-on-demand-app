@@ -21,6 +21,9 @@ const Header = ({}: HeaderProps) => (
       <div>
         <Link to="/popular">Popular</Link>
       </div>
+      <div>
+        <Link to="/popular">Watchlist: 0</Link>
+      </div>
     </nav>
     <hr />
   </div>

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
+import Watchlist from "../pages/Watchlist";
 
 const Home = React.lazy(() => import("../pages/Home"));
 const AssetDetails = React.lazy(() => import("../pages/AssetDetails"));
@@ -44,6 +45,8 @@ function AppRoutes() {
 
           <Route path="/movies/:category_id" element={<MoviesByCategory />} />
           <Route path="/asset/:id" element={<AssetDetails />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : null}

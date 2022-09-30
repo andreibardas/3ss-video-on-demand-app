@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useRef, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
-import {
-  CategoriesApiResponse,
-  useGetMoviesByCategory,
-} from "../hooks/useGetMoviesByCategory";
+import { useGetMoviesByCategory } from "../hooks/useGetMoviesByCategory";
 import { Link } from "react-router-dom";
 
 type Category = {
@@ -13,7 +10,6 @@ type Category = {
 };
 
 const MoviesByCategory = () => {
-  let navigate = useNavigate();
   let { category_id } = useParams();
 
   const [pageNumber, setPageNumber] = useState(1);
@@ -22,8 +18,6 @@ const MoviesByCategory = () => {
     category_id,
     pageNumber
   );
-
-  const [myData, setMyData] = useState<any[]>([]);
 
   const observer = useRef<any>();
 
@@ -47,35 +41,11 @@ const MoviesByCategory = () => {
     "https://video-proxy.3rdy.tv/api/vod/category"
   );
 
-  // const moviesByCategory: ApiResponse = useGetApi(
-  //   `https://video-proxy.3rdy.tv/api/vod/category/${category_id}/assets/?page=1&size=20`
-  // );
-
   const currentCategory = categories.data?.data.genres.find(
     (item: Category) => {
       return item.id.toString() === category_id ? item?.name : null;
     }
   );
-
-  // useEffect(() => {
-  //   if (data) {
-  //     // setMyData(data);
-  //     const filteredMovies = [...new Set(data)];
-  //     setMyData(filteredMovies);
-  //   }
-  //   console.log("my Data useeffect: ", myData);
-  // }, [data]);
-
-  // if (myData === undefined)
-  //   return (
-  //     <div>
-  //       {" "}
-  //       <button onClick={() => console.log(myData)}>
-  //         console log movies by category
-  //       </button>
-  //       <h1>Loading...</h1>
-  //     </div>
-  //   );
 
   return (
     <div>
@@ -98,8 +68,8 @@ const MoviesByCategory = () => {
         {data.map((asset: any, index: any) => {
           if (data.length === index + 1) {
             return (
-              <Link to={`/asset/${asset.id}`}>
-                <div ref={lastMovieElementRef} key={asset.id}>
+              <Link key={asset.id} to={`/asset/${asset.id}`}>
+                <div ref={lastMovieElementRef}>
                   <img
                     style={{ width: "200px" }}
                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
@@ -110,8 +80,8 @@ const MoviesByCategory = () => {
             );
           } else {
             return (
-              <Link to={`/asset/${asset.id}`}>
-                <div key={asset.id}>
+              <Link key={asset.id} to={`/asset/${asset.id}`}>
+                <div>
                   <img
                     style={{ width: "200px" }}
                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
