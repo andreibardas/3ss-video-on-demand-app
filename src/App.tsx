@@ -10,10 +10,10 @@ function App() {
   return (
     <div>
       <WatchlistProvider>
+        <GlobalStyle />
         <Navbar />
         <AppRoutes />
       </WatchlistProvider>
-      <GlobalStyle />
     </div>
   );
 }
