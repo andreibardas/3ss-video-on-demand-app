@@ -6,7 +6,7 @@ import { NavbarProps } from "../components/Navbar";
 export const NavbarContainer = styled.nav`
   width: 100%;
   height: ${(props: NavbarProps) => (props.extendNavbar ? "100vh" : "80px")};
-  background-color: #101010;
+  background-color: #212121;
   display: flex;
   position: fixed;
 
