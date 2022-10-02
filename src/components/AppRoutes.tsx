@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Loading from "../components/Loading";
+import Loading from "./Utility/Loading";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import Watchlist from "../pages/Watchlist";
 

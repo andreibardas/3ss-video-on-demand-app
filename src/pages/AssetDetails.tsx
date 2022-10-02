@@ -1,7 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
+
+import { Container, Button } from "../styles/AssetDetails.styled";
+import Modal from "../components/Utility/Modal";
 
 type AssetDetailsProps = {
   title?: string;
@@ -12,6 +16,9 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
   let { id } = useParams();
   const navigate = useNavigate();
 
+  const [notFound, setNotFound] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const assetDetails: ApiResponse = useGetApi(
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}`
   );
@@ -20,19 +27,22 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}/videos`
   );
 
-  const [notFound, setNotFound] = useState(false);
+  const openModal = () => {
+    setShowModal((prev: boolean) => !prev);
+    console.log(showModal);
+  };
 
   const { addToWatchlist } = useContext(WatchlistContext);
 
-  // useEffect(() => {
-  //   if (notFound) {
-  //     navigate("/404", { replace: true });
-  //   }
-  // }, []);
-
   return (
-    <div>
+    <div style={{ overflowY: "hidden" }}>
       <h1>Asset Details Page</h1>
+
+      <Container>
+        <Button onClick={openModal}>I'm a modal</Button>
+        <Modal showModal={showModal} setShowModal={setShowModal} />
+      </Container>
+
       <p>Asset ID: {id}</p>
       <button onClick={() => console.log(assetVideos.data?.data.results)}>
         log videos

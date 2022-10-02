@@ -2,7 +2,18 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 1000px;
-  max-width: 100%;
-  padding: 0 20px;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+export const Button = styled.button`
+  min-width: 100px;
+  padding: 16px 32px;
+  border-radius: 4px;
+  border: none;
+  background: #141414;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
 `;

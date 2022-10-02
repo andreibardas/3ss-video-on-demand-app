@@ -3,7 +3,8 @@ import "./App.css";
 
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
-import { WatchlistProvider } from "./contexts/WatchlistContext/WatchlistProvider";
+import { WatchlistProvider } from "./contexts/WatchlistContext/WatchlistContext";
+import { GlobalStyle } from "./globalStyles";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <AppRoutes />
       </WatchlistProvider>
+      <GlobalStyle />
     </div>
   );
 }
