@@ -4,6 +4,8 @@ import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import { useGetMoviesByCategory } from "../hooks/useGetMoviesByCategory";
 import { Link } from "react-router-dom";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type Category = {
   id: number;
   name: string;
@@ -48,7 +50,7 @@ const MoviesByCategory = () => {
   );
 
   return (
-    <div>
+    <PageContainer>
       <h1>Movies By Category Page</h1>
       <p>{currentCategory?.name} Movies</p>
 
@@ -93,7 +95,7 @@ const MoviesByCategory = () => {
           }
         })}
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

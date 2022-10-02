@@ -2,6 +2,8 @@ import React from "react";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import { Link } from "react-router-dom";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type CategoriesProps = {
   title?: string;
   paragraph?: string;
@@ -13,7 +15,7 @@ const Categories = ({ title, paragraph }: CategoriesProps) => {
   );
 
   return (
-    <div>
+    <PageContainer>
       <h1>Categories Page</h1>
 
       <div
@@ -34,7 +36,7 @@ const Categories = ({ title, paragraph }: CategoriesProps) => {
 
       <h2>{title}</h2>
       <p>{paragraph}</p>
-    </div>
+    </PageContainer>
   );
 };
 

@@ -5,6 +5,7 @@ import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
 
 import { Container, Button } from "../styles/AssetDetails.styled";
+import { PageContainer } from "../styles/PageContainer.styled";
 import Modal from "../components/Utility/Modal";
 
 type AssetDetailsProps = {
@@ -35,7 +36,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
   const { addToWatchlist } = useContext(WatchlistContext);
 
   return (
-    <div style={{ overflowY: "hidden" }}>
+    <PageContainer>
       <h1>Asset Details Page</h1>
 
       <Container>
@@ -86,7 +87,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
 
       <h2>{title}</h2>
       <p>{paragraph}</p>
-    </div>
+    </PageContainer>
   );
 };
 

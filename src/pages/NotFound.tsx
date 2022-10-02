@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type NotFoundProps = {
   title?: string;
   paragraph?: string;
@@ -13,7 +15,7 @@ const NotFound = ({ title, paragraph }: NotFoundProps) => {
   );
 
   return (
-    <div>
+    <PageContainer>
       <h1>Not Found Page</h1>
 
       <div
@@ -37,7 +39,7 @@ const NotFound = ({ title, paragraph }: NotFoundProps) => {
           </Link>
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

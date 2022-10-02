@@ -2,6 +2,8 @@ import React from "react";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import { Link } from "react-router-dom";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type HomeProps = {
   title?: string;
   paragraph?: string;
@@ -13,7 +15,7 @@ const Home = ({ title, paragraph }: HomeProps) => {
   );
 
   return (
-    <div>
+    <PageContainer>
       <h1>Home Page</h1>
 
       <div
@@ -40,7 +42,7 @@ const Home = ({ title, paragraph }: HomeProps) => {
 
       <h2>{title}</h2>
       <p>{paragraph}</p>
-    </div>
+    </PageContainer>
   );
 };
 

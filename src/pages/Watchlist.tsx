@@ -3,6 +3,8 @@ import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
 import { Link } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type NotFoundProps = {
   title?: string;
   paragraph?: string;
@@ -14,13 +16,13 @@ const Watchlist = ({ title, paragraph }: NotFoundProps) => {
   console.log(items.items);
 
   return (
-    <div>
+    <PageContainer>
       <h1>Watchlist Page</h1>
 
       {items.items?.map((item: any) => {
         return <p>{item?.name}</p>;
       })}
-    </div>
+    </PageContainer>
   );
 };
 

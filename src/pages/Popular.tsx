@@ -2,6 +2,8 @@ import React from "react";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import { Link } from "react-router-dom";
 
+import { PageContainer } from "../styles/PageContainer.styled";
+
 type PopularProps = {
   title?: string;
   paragraph?: string;
@@ -13,7 +15,7 @@ const Popular = ({ title, paragraph }: PopularProps) => {
   );
 
   return (
-    <div>
+    <PageContainer>
       <h1>Popular Page</h1>
 
       <div
@@ -37,7 +39,7 @@ const Popular = ({ title, paragraph }: PopularProps) => {
           </Link>
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
