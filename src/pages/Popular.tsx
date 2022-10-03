@@ -1,44 +1,51 @@
 import React from "react";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import {
+  CardContainer,
+  CardContent,
+  CardTitle,
+  CardDateAndVote,
+} from "../styles/Cards.styled";
 
 import { PageContainer } from "../styles/PageContainer.styled";
+import { CardsPageContainer } from "../styles/Cards.styled";
 
-type PopularProps = {
-  title?: string;
-  paragraph?: string;
-};
+const Popular = () => {
+  const navigate = useNavigate();
 
-const Popular = ({ title, paragraph }: PopularProps) => {
   const popularAssets: ApiResponse = useGetApi(
     "https://video-proxy.3rdy.tv/api/vod/popular"
   );
 
   return (
     <PageContainer>
-      <h1>Popular Page</h1>
+      <h1>Popular Movies</h1>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
+      <CardsPageContainer>
         {popularAssets.data?.data.map((popularAsset: any) => (
-          <Link to={`/asset/${popularAsset.id}`}>
-            <div key={popularAsset.id}>
-              <img
-                style={{ width: "200px" }}
-                src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.poster_path}`}
-              />
-              <p>{popularAsset.original_title}</p>
-            </div>
-          </Link>
+          <CardContainer
+            key={popularAsset.id}
+            onClick={() => navigate(`/asset/${popularAsset.id}`)}
+          >
+            <img
+              src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.backdrop_path}`}
+            />
+            <CardContent>
+              <CardTitle>
+                <p>{popularAsset.original_title}</p>
+              </CardTitle>
+              <CardDateAndVote>
+                <p>
+                  {new Date(popularAsset.release_date).toLocaleDateString()}
+                </p>
+                <p>{popularAsset.vote_average}</p>
+              </CardDateAndVote>
+            </CardContent>
+          </CardContainer>
         ))}
-      </div>
+      </CardsPageContainer>
     </PageContainer>
   );
 };

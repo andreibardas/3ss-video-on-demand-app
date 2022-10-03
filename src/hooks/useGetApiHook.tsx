@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export type ApiResponse = {
   success: Boolean;
@@ -23,7 +23,6 @@ export const useGetApi = (url: string): ApiResponse => {
     try {
       const apiResponse = await fetch(url);
       const json = await apiResponse.json();
-      console.log(json.success);
       if (json.success === false) {
         navigate("/not-found", { replace: true });
       }

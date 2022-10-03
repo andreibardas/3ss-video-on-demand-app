@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import WatchlistContext from "../contexts/WatchlistContext";
 import LogoImg from "../assets/logo.png";
 
 import {
@@ -23,10 +22,6 @@ export interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
   const [extendNavbar, setExtendNavbar] = useState(false);
 
-  const items = useContext(WatchlistContext);
-
-  console.log(items);
-
   useEffect(() => {
     if (extendNavbar) {
       document.body.style.overflow = "hidden";
@@ -36,32 +31,6 @@ const Navbar = (props: NavbarProps) => {
   }, [extendNavbar]);
 
   return (
-    // <div>
-    //   <nav
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "row",
-    //       justifyContent: "space-around",
-    //     }}
-    //   >
-    //     <div>
-    //       <Link to="/">Home</Link>
-    //     </div>
-    //     <div>
-    //       <Link to="/categories">Categories</Link>
-    //     </div>
-    //     <div>
-    //       <Link to="/popular">Popular</Link>
-    //     </div>
-    //     <div>
-    //       <Link to="/watchlist">
-    //         Watchlist: <span>{items.items.length}</span>
-    //       </Link>
-    //     </div>
-    //   </nav>
-    //   <hr />
-    // </div>
-
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
         <LeftContainer>
@@ -69,9 +38,7 @@ const Navbar = (props: NavbarProps) => {
             <NavbarLink to="/">Home</NavbarLink>
             <NavbarLink to="/categories">Categories</NavbarLink>
             <NavbarLink to="/popular">Popular</NavbarLink>
-            <NavbarLink to="/watchlist">
-              Watchlist: <span>{items.items.length}</span>
-            </NavbarLink>
+            <NavbarLink to="/watchlist">Watchlist</NavbarLink>
             <OpenLinksButton
               onClick={() => {
                 setExtendNavbar((curr) => !curr);
@@ -108,7 +75,7 @@ const Navbar = (props: NavbarProps) => {
             onClick={() => setExtendNavbar(false)}
             to="/watchlist"
           >
-            Watchlist: <span>{items.items.length}</span>
+            Watchlist
           </NavbarLinkExtended>
         </NavbarExtendedContainer>
       )}

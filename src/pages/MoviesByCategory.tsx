@@ -1,10 +1,16 @@
 import React, { useState, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 import { useGetMoviesByCategory } from "../hooks/useGetMoviesByCategory";
-import { Link } from "react-router-dom";
 
 import { PageContainer } from "../styles/PageContainer.styled";
+import {
+  CardContainer,
+  CardContent,
+  CardDateAndVote,
+  CardTitle,
+  CardsPageContainer,
+} from "../styles/Cards.styled";
 
 type Category = {
   id: number;
@@ -13,6 +19,7 @@ type Category = {
 
 const MoviesByCategory = () => {
   let { category_id } = useParams();
+  const navigate = useNavigate();
 
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -51,50 +58,54 @@ const MoviesByCategory = () => {
 
   return (
     <PageContainer>
-      <h1>Movies By Category Page</h1>
-      <p>{currentCategory?.name} Movies</p>
+      <h1>{currentCategory?.name} Movies</h1>
 
-      <button onClick={() => console.log(data)}>
-        console log movies by category
-      </button>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
+      <CardsPageContainer>
         {data.map((asset: any, index: any) => {
           if (data.length === index + 1) {
             return (
-              <Link key={asset.id} to={`/asset/${asset.id}`}>
-                <div ref={lastMovieElementRef}>
-                  <img
-                    style={{ width: "200px" }}
-                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
-                  />
-                  <p>{asset.original_title}</p>
-                </div>
-              </Link>
+              <CardContainer
+                key={asset.id}
+                onClick={() => navigate(`/asset/${asset.id}`)}
+                ref={lastMovieElementRef}
+              >
+                <img
+                  src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.backdrop_path}`}
+                />
+                <CardContent>
+                  <CardTitle>
+                    <p>{asset.original_title}</p>
+                  </CardTitle>
+                  <CardDateAndVote>
+                    <p>{new Date(asset.release_date).toLocaleDateString()}</p>
+                    <p>{asset.vote_average}</p>
+                  </CardDateAndVote>
+                </CardContent>
+              </CardContainer>
             );
           } else {
             return (
-              <Link key={asset.id} to={`/asset/${asset.id}`}>
-                <div>
-                  <img
-                    style={{ width: "200px" }}
-                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.poster_path}`}
-                  />
-                  <p>{asset.original_title}</p>
-                </div>
-              </Link>
+              <CardContainer
+                key={asset.id}
+                onClick={() => navigate(`/asset/${asset.id}`)}
+              >
+                <img
+                  src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.backdrop_path}`}
+                />
+                <CardContent>
+                  <CardTitle>
+                    <p>{asset.original_title}</p>
+                  </CardTitle>
+                  <CardDateAndVote>
+                    <p>{new Date(asset.release_date).toLocaleDateString()}</p>
+                    <p>{asset.vote_average}</p>
+                  </CardDateAndVote>
+                </CardContent>
+              </CardContainer>
             );
           }
         })}
-      </div>
+      </CardsPageContainer>
     </PageContainer>
   );
 };

@@ -1,32 +1,30 @@
 import React, { useState } from "react";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
+import {
+  SliderContainer,
+  CarouselCard,
+  ImageContainer,
+  ContentContainer,
+  Tag,
+  Title,
+  ArrowContainer,
+} from "../styles/Slider.styled";
+import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
+import { useNavigate } from "react-router-dom";
 
-const SliderData = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1546768292-fb12f6c92568?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1475189778702-5ec9941484ae?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1351&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",
-  },
-];
+type Category = {
+  id: number;
+  name: string;
+};
 
 const ImageSlider = ({ slides }: any) => {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
-  const length = slides.length;
+  const length = slides?.length;
+
+  const categories: ApiResponse = useGetApi(
+    "https://video-proxy.3rdy.tv/api/vod/category"
+  );
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -41,24 +39,71 @@ const ImageSlider = ({ slides }: any) => {
   }
 
   return (
-    <section className="slider">
-      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+    <SliderContainer>
+      <ArrowContainer>
+        <MdKeyboardArrowLeft
+          style={{ height: "330px" }}
+          size={60}
+          onClick={prevSlide}
+        />
+      </ArrowContainer>
 
-      {SliderData.map((slide, index) => {
+      {slides.map((slide, index) => {
         return (
-          <div
-            className={index === current ? "slide active" : "slide"}
-            key={index}
-          >
+          <div key={index}>
             {index === current && (
-              <img src={slide.image} alt="travel image" className="image" />
+              <CarouselCard>
+                <ImageContainer onClick={() => navigate(`/asset/${slide.id}`)}>
+                  <img
+                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${slide.backdrop_path}`}
+                    alt="cover image"
+                    className="image"
+                  />
+                </ImageContainer>
+                <ContentContainer>
+                  <div>
+                    <Title onClick={() => navigate(`/asset/${slide.id}`)}>
+                      {slide.original_title}
+                    </Title>
+                    {slide.genre_ids.map((genre: string) => {
+                      return categories.data?.data.genres.map(
+                        (category: Category) => {
+                          if (category.id.toString() === genre.toString()) {
+                            return (
+                              <Tag
+                                key={category.id}
+                                onClick={() =>
+                                  navigate(`/movies/${category.id}`)
+                                }
+                              >
+                                {category.name}{" "}
+                              </Tag>
+                            );
+                          } else {
+                            return null;
+                          }
+                        }
+                      );
+                    })}
+                  </div>
+                  <p>{slide.overview.slice(0, 100)}...</p>
+                  <p>
+                    Rating: {slide.vote_average} ({slide.vote_count} votes)
+                  </p>
+                </ContentContainer>
+              </CarouselCard>
             )}
           </div>
         );
       })}
-
-      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
-    </section>
+      <ArrowContainer>
+        <MdKeyboardArrowRight
+          style={{ height: "330px" }}
+          size={60}
+          onClick={nextSlide}
+        />
+      </ArrowContainer>
+    </SliderContainer>
   );
 };
 

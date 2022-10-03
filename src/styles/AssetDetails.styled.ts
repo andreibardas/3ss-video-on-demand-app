@@ -1,19 +1,24 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const ModalContainer = styled.div`
   width: 1000px;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
 
-export const Button = styled.button`
-  min-width: 100px;
-  padding: 16px 32px;
-  border-radius: 4px;
-  border: none;
-  background: #141414;
-  color: #ffffff;
-  font-size: 24px;
-  cursor: pointer;
+export const AssetDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+export const OverviewText = styled.p`
+  overflow-wrap: break-word;
+  inline-size: 60vw;
+  @media (max-width: 800px) {
+    inline-size: 300px;
+  }
 `;

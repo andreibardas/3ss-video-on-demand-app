@@ -11,9 +11,3 @@ body {
 }
 
 `;
-
-// COLOR PALETTE
-// #181818
-// #212121
-// #DA0037
-// #EDEDED

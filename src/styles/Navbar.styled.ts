@@ -9,6 +9,7 @@ export const NavbarContainer = styled.nav`
   background-color: #212121;
   display: flex;
   position: fixed;
+  z-index: 30;
 
   flex-direction: column;
   @media (min-width: 800px) {
@@ -45,11 +46,15 @@ export const NavbarLinkContainer = styled.div`
 export const NavbarLink = styled(Link)`
   color: white;
   font-size: x-large;
-  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   text-decoration: none;
   margin: 10px;
   @media (max-width: 800px) {
     display: none;
+  }
+
+  :hover {
+    color: #dd0211;
   }
 `;
 
