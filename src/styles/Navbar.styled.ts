@@ -11,7 +11,7 @@ export const NavbarContainer = styled.nav`
   position: fixed;
 
   flex-direction: column;
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     height: 80px;
   }
 `;
@@ -48,7 +48,7 @@ export const NavbarLink = styled(Link)`
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `;
@@ -75,7 +75,7 @@ export const OpenLinksButton = styled.button`
   color: white;
   font-size: 45px;
   cursor: pointer;
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;
@@ -84,7 +84,7 @@ export const NavbarExtendedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;

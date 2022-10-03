@@ -1,9 +1,9 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
 
 import Navbar from "./components/Navbar";
 import AppRoutes from "./components/AppRoutes";
-import { WatchlistProvider } from "./contexts/WatchlistContext/WatchlistContext";
+import { WatchlistProvider } from "./contexts/WatchlistContext";
 import { GlobalStyle } from "./globalStyles";
 
 function App() {

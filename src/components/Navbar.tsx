@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
+import WatchlistContext from "../contexts/WatchlistContext";
 import LogoImg from "../assets/logo.png";
 
 import {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 
-import { ShowModalProps } from "../components/Utility/Modal";
+import { ShowModalProps } from "../components/utility/Modal";
 
 export const Background = styled.div`
   width: 100vw;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
+import WatchlistContext from "../contexts/WatchlistContext";
 import { Link } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 

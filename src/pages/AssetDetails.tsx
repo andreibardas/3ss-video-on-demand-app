@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
-import WatchlistContext from "../contexts/WatchlistContext/WatchlistContext";
+import WatchlistContext from "../contexts/WatchlistContext";
 
 import { Container, Button } from "../styles/AssetDetails.styled";
 import { PageContainer } from "../styles/PageContainer.styled";
-import Modal from "../components/Utility/Modal";
+import Modal from "../components/utility/Modal";
 
 type AssetDetailsProps = {
   title?: string;
