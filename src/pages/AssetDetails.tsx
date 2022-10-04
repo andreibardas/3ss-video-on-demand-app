@@ -14,21 +14,19 @@ import { PageContainer } from "../styles/PageContainer.styled";
 import Modal from "../components/utility/Modal";
 import { Tag } from "../styles/Slider.styled";
 
-type AssetDetailsProps = {
-  title?: string;
-  paragraph?: string;
-};
+import { MdDoneOutline } from "react-icons/md";
 
 type Category = {
   id: number;
   name: string;
 };
 
-const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
+const AssetDetails = () => {
   let { id } = useParams();
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
+  const [addedToWatchlist, setAddedToWatchlist] = useState(false);
 
   const assetDetails: ApiResponse = useGetApi(
     `https://video-proxy.3rdy.tv/api/vod/asset/${id}`
@@ -87,20 +85,31 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
           <h3>Overview</h3>
           <OverviewText>{assetDetails.data?.data.overview}</OverviewText>
           <div style={{ marginTop: "40px" }}>
+            {/*<div style={{ display: "flex", flexDirection: "column" }}>*/}
+            <SecondaryButton
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+              onClick={openModal}
+            >
+              Watch Trailer
+            </SecondaryButton>
             <PrimaryButton
-              onClick={() =>
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+              onClick={() => {
                 addToWatchlist(
                   assetDetails.data?.data.id,
                   assetDetails.data?.data.original_title,
                   assetDetails.data?.data.backdrop_path,
                   assetDetails.data?.data.release_date,
                   assetDetails.data?.data.vote_average
-                )
-              }
+                );
+                setAddedToWatchlist(true);
+              }}
             >
               Add to Watchlist
             </PrimaryButton>{" "}
-            <SecondaryButton onClick={openModal}>Watch Trailer</SecondaryButton>
+            {addedToWatchlist ? (
+              <MdDoneOutline style={{ color: "green" }} />
+            ) : null}
           </div>
         </div>
       </AssetDetailsContainer>
