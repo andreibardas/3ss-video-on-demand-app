@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ApiResponse, useGetApi } from "../hooks/useGetApiHook";
 
 import { PageContainer } from "../styles/PageContainer.styled";
@@ -7,7 +7,6 @@ import {
   CardContainer,
   CardContent,
   CardDateAndVote,
-  CardsPageContainer,
   CardTitle,
 } from "../styles/Cards.styled";
 
@@ -36,6 +35,7 @@ const NotFound = () => {
             onClick={() => navigate(`/asset/${popularAsset.id}`)}
           >
             <img
+              alt={popularAsset.original_title}
               src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.backdrop_path}`}
             />
             <CardContent>

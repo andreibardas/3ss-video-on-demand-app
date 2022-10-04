@@ -44,11 +44,12 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
     <PageContainer style={{ overflowY: "hidden" }}>
       <AssetDetailsContainer>
         <img
-          src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${assetDetails?.data?.data?.backdrop_path}`}
+          alt={assetDetails.data?.data.original_title}
+          src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${assetDetails?.data?.data.backdrop_path}`}
         />
         <div>
           <h1>
-            {assetDetails.data?.data?.original_title}{" "}
+            {assetDetails.data?.data.original_title}{" "}
             <span style={{ fontWeight: "normal" }}>
               {" "}
               ({new Date(
@@ -57,7 +58,7 @@ const AssetDetails = ({ title, paragraph }: AssetDetailsProps) => {
             </span>
           </h1>
           <div>
-            {assetDetails.data?.data?.genres.map((genre: Category) => {
+            {assetDetails.data?.data.genres.map((genre: Category) => {
               return (
                 <Tag
                   key={genre.id}

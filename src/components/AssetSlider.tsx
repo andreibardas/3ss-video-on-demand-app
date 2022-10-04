@@ -56,8 +56,7 @@ const ImageSlider = ({ slides }: any) => {
                 <ImageContainer onClick={() => navigate(`/asset/${slide.id}`)}>
                   <img
                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${slide.backdrop_path}`}
-                    alt="cover image"
-                    className="image"
+                    alt="cover"
                   />
                 </ImageContainer>
                 <ContentContainer>

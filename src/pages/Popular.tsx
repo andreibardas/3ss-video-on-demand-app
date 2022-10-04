@@ -30,6 +30,7 @@ const Popular = () => {
             onClick={() => navigate(`/asset/${popularAsset.id}`)}
           >
             <img
+              alt={popularAsset.original_title}
               src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${popularAsset.backdrop_path}`}
             />
             <CardContent>

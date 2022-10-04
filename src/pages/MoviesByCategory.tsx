@@ -23,7 +23,7 @@ const MoviesByCategory = () => {
 
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { hasMore, loading, error, data }: any = useGetMoviesByCategory(
+  const { loading, data }: any = useGetMoviesByCategory(
     category_id,
     pageNumber
   );
@@ -43,7 +43,7 @@ const MoviesByCategory = () => {
       if (node) observer.current.observe(node);
       console.log(node);
     },
-    [loading, hasMore]
+    [loading]
   );
 
   const categories: ApiResponse = useGetApi(
@@ -70,6 +70,7 @@ const MoviesByCategory = () => {
                 ref={lastMovieElementRef}
               >
                 <img
+                  alt={asset.original_title}
                   src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.backdrop_path}`}
                 />
                 <CardContent>
@@ -90,6 +91,7 @@ const MoviesByCategory = () => {
                 onClick={() => navigate(`/asset/${asset.id}`)}
               >
                 <img
+                  alt={asset.original_title}
                   src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${asset.backdrop_path}`}
                 />
                 <CardContent>
