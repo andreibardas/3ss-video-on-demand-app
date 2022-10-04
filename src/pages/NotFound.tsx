@@ -29,7 +29,7 @@ const NotFound = () => {
           flexWrap: "wrap",
         }}
       >
-        {popularAssets.data?.data.slice(0, 3).map((popularAsset: any) => (
+        {popularAssets.data?.data?.slice(-3).map((popularAsset: any) => (
           <CardContainer
             key={popularAsset.id}
             onClick={() => navigate(`/asset/${popularAsset.id}`)}
